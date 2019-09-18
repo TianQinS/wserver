@@ -1,0 +1,28 @@
+module(..., package.seeall)
+
+---------------------- socket 配置项 ----------------------------
+
+-- 字节包头
+HEAD_LENGTH_FORMAT = "<I"
+HEAD_LENGTH_SIZE = 4
+-- 连接状态
+ST_OFF = 0
+ST_IDLE = 1
+NET_STATE_STOP = 0
+NET_STATE_CONNECTING = 1
+NET_STATE_ESTABLISHED = 2
+NET_CONNECTION_ENTER = 0
+NET_CONNECTION_DATA = 1
+NET_CONNECTION_LEAVE = 2
+
+-- 服务端连接数
+MAX_HOST_CLIENTS_INDEX = 16
+NAX_HOST_CLIENTS_BYTES = 16
+
+-- 超时与认证设置
+HEART_TIMEOUT = 1800
+CLIENT_TIMEOUT = 3600
+SEC_SOCKET_KEY = "test"
+
+-- 单次最多发送
+MAX_SEND_LENGTH = 10240

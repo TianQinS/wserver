@@ -1,0 +1,51 @@
+<html>
+<head>    
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+</head>
+<style>
+	.test {
+		background-color: #EEEEEE;
+	}
+	.line {
+		box-shadow: 0 4px #DDDDDD;
+		border-radius: 5px;
+	}
+</style>
+<body>
+<div class="test" style="width:100%"></div>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="client2.js"></script>
+<script>
+$(function(){
+	var info = function(data)
+	{
+		$("div.test").append("<p class=\"line\">" + data + "</p>");
+	};
+	var client = new Client();
+	client.connect({
+		host: "127.0.0.1",
+		port: 23456,
+		onConnect: function(){
+			info("socket连接成功!");
+		},
+		onError: function(err){
+			info(err);
+		},
+		onClose: function(){
+			info("socket连接关闭!");
+		},
+	});
+	
+	setTimeout(function(){
+		client.call_server({
+			func: "count",
+			args: [1],
+			callback: function(data){
+				info(JSON.stringify(data));	
+			}
+		});
+	}, 1000);
+});
+</script>
+</body>
+</html>
